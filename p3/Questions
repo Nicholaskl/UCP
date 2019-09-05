@@ -1,0 +1,10 @@
+Q1.
+One outputs ">0" and the second outputs "32629". The others don't output anything to the terminal.
+conditional uninitialised value line 40
+conditional uninitialised value line 1642
+use uninitialised value line 179
+conditional uninitialised value line 179
+memory leak at line 55 - lost 4 bytes
+invalid free/delete/realloc at line 63. inside line 62. alloc'd at 61
+invalid write(4) at line 71. address at line 70. alloc'd at 69
+
