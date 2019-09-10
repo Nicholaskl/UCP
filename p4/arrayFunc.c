@@ -1,3 +1,7 @@
+//* Author: Nicholas Klvana-Hooper *//
+//* Date last Modified - 10/09/2019 *//
+//* Purpose: Contains functions to test array methods *//
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -31,29 +35,28 @@ void menu(int argc, char* argv[])
     int i;
     char** str = (char**)malloc(LENGTH * sizeof(char));
     char* funcName = (char*)malloc(8 * sizeof(char));
-    
+
     for(i = 2; i < argc; i++)
     {
         str[i-2] = argv[i];
     }
 
-    strncpy(funcName, argv[1], 8);   
+    strncpy(funcName, argv[1], 8);
 
     upperString(funcName);
     parseArray(str, array, LENGTH);
     output = 0;
 
+    //* Menu system for type of method to be used *//
     if(strcmp(funcName, "SUM") == 0)
     {
         output = sum(array, LENGTH);
         printf("sum is %d\n", output);
-
     }
     else if(strcmp(funcName, "MAX") == 0)
     {
         output = max(array, LENGTH);
         printf("max index is %d\n", output);
-
     }
     else if(strcmp(funcName, "REVERSE") == 0)
     {
@@ -69,6 +72,7 @@ void menu(int argc, char* argv[])
     free(funcName);
 }
 
+//* Calculates the sum of the numbers given *//
 int sum(int array[], int length)
 {
     int i;
@@ -76,11 +80,12 @@ int sum(int array[], int length)
     output = 0;
     for(i = 0; i < length; i++)
     {
-        output += array[i];   
+        output += array[i];
     }
     return output;
 }
 
+//* returns the index no. of the maximum number given *//
 int max(int array[], int length)
 {
     int i;
@@ -94,10 +99,11 @@ int max(int array[], int length)
         {
             output = i;
         }
-    }   
+    }
     return output;
 }
 
+//* Reverses the order of the numbers given *//
 void reverse(int array[],int length)
 {
     int i;
@@ -105,13 +111,14 @@ void reverse(int array[],int length)
     for(i = 0; i < length; i++)
     {
         arrayTemp[i] = array[length-1-i];
-    }   
+    }
     for(i = 0; i < length; i++)
     {
         array[i] = arrayTemp[i];
     }
 }
 
+//* Changes the strings given, into integers *//
 void parseArray(char** str, int array[], int length)
 {
     int i;
@@ -121,6 +128,7 @@ void parseArray(char** str, int array[], int length)
     }
 }
 
+//* Prints the outputs the reverse method *//
 void printStr(int array[], int length)
 {
     int i;
@@ -132,6 +140,7 @@ void printStr(int array[], int length)
     printf("%d}\n", array[length-1]);
 }
 
+//* Converts strings to all caps *//
 void upperString(char* funcName)
 {
     int i;
