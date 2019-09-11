@@ -1,6 +1,6 @@
-//* Author: Nicholas Klvana-Hooper *//
-//* Date last Modified - 10/09/2019 *//
-//* Purpose: Program to do basic ascending/descending sorts *//
+/* Author: Nicholas Klvana-Hooper */
+/* Date last Modified - 10/09/2019 */
+/* Purpose: Program to do basic ascending/descending sorts */
 
 #include <stdio.h>
 #include <stddef.h>
@@ -24,10 +24,10 @@ int main (void)
     z = &var3;
     test = &var4;
 
-    //* Passes values to be assigned values by user  *//
+    /* Passes values to be assigned values by user  */
     readInts(x, y, z, test);
 
-    //* Gets method based on User input and gives it the values needed *//
+    /* Gets method based on User input and gives it the values needed */
     ordPointer = order(*test);
     (*ordPointer)(x, y, z);
 

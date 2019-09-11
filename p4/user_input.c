@@ -1,11 +1,11 @@
-//* Author: Nicholas Klvana-Hooper *//
-//* Date last Modified - 10/09/2019 *//
-//* Purpose: program to intialise user input into variables *//
+/* Author: Nicholas Klvana-Hooper */
+/* Date last Modified - 10/09/2019 */
+/* Purpose: program to intialise user input into variables */
 
 #include "numbers.h"
 #include <stdio.h>
 
-//* passes pointers that are assigned values entered by user*//
+/* passes pointers that are assigned values entered by user*/
 void readInts(int* x, int* y, int* z, char* test)
 {
     printf("Please enter the first integer\n");
