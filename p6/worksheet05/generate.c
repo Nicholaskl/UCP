@@ -1,26 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "plot.h"
+#include "randomarray.h"
 
 int main(int argc, char* argv[])
 {
-    int rows, cols, i, j;
-    double ch;
-    char firstLine[10];
-    char* chs;
-    char* end;
-    char line[500];
-    double** array;
     FILE* inFile;
+    double** array;
+    int rows, cols, i, j;
 
     if (strcmp(argv[1], "-") == 0)
     {
-        inFile = stdin;
+        inFile = stdout;
     }
     else
     {
-        inFile = fopen(argv[1], "r");
+        inFile = fopen(argv[1], "w");
     }
 
     if(inFile == NULL)
@@ -32,31 +27,26 @@ int main(int argc, char* argv[])
         perror("Error reading from File1\n");
     }
 
-    fgets(firstLine, 10, inFile);
-    sscanf(firstLine, "%d %d", &rows, &cols);
-    fflush(stdin);
+    rows = atoi(argv[2]);
+    cols = atoi(argv[3]);
+
     array = (double**)malloc(rows * sizeof(double*));
     for(i = 0; i < rows; i++)
     {
         array[i] = (double*)malloc(cols * sizeof(double*));
     }
 
+    randomArray(array, rows, cols, 2);
+
+    fprintf(inFile, "%d %d \n", rows, cols);
     for(i = 0; i < rows; i++)
     {
-        fgets(line, 250, inFile);
-        chs = strtok(line, " ");
         for(j = 0; j < cols; j++)
         {
-            if(chs != NULL)
-            {
-              ch = strtod(chs, &end);
-              array[i][j] = ch;
-              chs = strtok(NULL, " ");
-            }
+            fprintf(inFile, "%f", array[i][j]);
         }
+        fprintf(inFile, "\n");
     }
-
-    plot(array, rows, cols);
 
     if(ferror(inFile))
     {
@@ -70,4 +60,9 @@ int main(int argc, char* argv[])
     free(array);
 
     return 0;
+}
+
+void standardOut(int argc, char* argv[])
+{
+
 }
