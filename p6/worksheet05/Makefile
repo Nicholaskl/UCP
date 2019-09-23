@@ -1,6 +1,6 @@
 CC = gcc
 EXEC = plotLog
-CFLAGS = -Wall -pedantic -ansi -g
+CFLAGS = -Wall -Werror -pedantic -ansi -g
 OBJ = display.o plot.o
 
 ifdef ALL_STATS

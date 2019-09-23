@@ -6,7 +6,10 @@
 int main(int argc, char* argv[])
 {
     int rows, cols, i, j;
-    double assign;
+    double ch;
+    char firstLine[10];
+    char* chs;
+    char* end;
     char line[500];
     double** array;
     FILE* inFile = fopen(argv[1], "r");
@@ -20,8 +23,10 @@ int main(int argc, char* argv[])
         perror("Error reading from File1\n");
     }
 
-    fscanf(inFile, "%d %d", &rows, &cols);
-    printf("works");
+
+    fgets(firstLine, 10, inFile);
+    sscanf(firstLine, "%d %d", &rows, &cols);
+    fflush(stdin);
     array = (double**)malloc(rows * sizeof(double*));
     for(i = 0; i < rows; i++)
     {
@@ -31,10 +36,23 @@ int main(int argc, char* argv[])
     for(i = 0; i < rows; i++)
     {
         fgets(line, 250, inFile);
-        for(j = 0; j < cols; i++)
+        chs = strtok(line, " ");
+        for(j = 0; j < cols; j++)
         {
-            sscanf(line, "%lf ", &assign);
-            array[i][j] = assign;
+            if(chs != NULL)
+            {
+              ch = strtod(chs, &end);
+              array[i][j] = ch;
+              chs = strtok(NULL, " ");
+            }
+        }
+    }
+
+    for(i = 0; i < rows; i++)
+    {
+        for(j = 0; j < cols; j++)
+        {
+            printf("%f \n", array[i][j]);
         }
     }
 
