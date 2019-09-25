@@ -6,12 +6,17 @@
 
 /**
  * Fills a malloc'd 2D array of doubles with random (but smoothed) values.
- *  
+ *
  * Parameters:
  * data      - a 2D array (a pointer to an array of pointers to arrays).
  * rows      - the number of rows in the data.
  * cols      - the number of columns in the data.
- * smoothing - a smoothing factor; higher values indicate smoother data, while 
+ * smoothing - a smoothing factor; higher values indicate smoother data, while
  *             zero indicates no smoothing.
  */
+#ifndef RANDOMARRAY_H
+#define RANDOMARRAY_H
+
 void randomArray(double **data, int rows, int cols, int smoothing);
+
+#endif
