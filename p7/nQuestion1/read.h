@@ -1,7 +1,8 @@
 #ifndef READ_H
 #define READ_H
 
-void main(int argc, char* argv[]);
+void menu(int argc, char* argv[]);
+void copyByOneChar(FILE* inFile, FILE* outFile);
 
 typedef struct {
     int year;

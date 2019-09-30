@@ -13,6 +13,9 @@ int main(int argc, char* argv[])
     char line[500];
     double** array;
     FILE* inFile;
+    int year;
+    int month;
+    int day;
 
     /* RUN WITH PIPING: ./generate - 15 25 | ./display - */
     /* run with filename or direct output */

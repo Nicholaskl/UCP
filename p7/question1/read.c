@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include "menu.h"
 
-void read(int argc, char* argv[], Entry* ent)
+#include "read.h"
+
+void readMenu()
 {
     FILE* inFile = fopen("input", "r");
     int size;
