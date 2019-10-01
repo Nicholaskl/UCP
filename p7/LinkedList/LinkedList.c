@@ -20,8 +20,33 @@ void insertStart(LinkedList* list, void* entry)
     newNode = (LListNode*)malloc(sizeof(LListNode));
 
     (*newNode).data = entry;
-    (*newNode).next = (*list).head;
-    (*list).head = newNode;
+
+    if(isEmpty(list) == 0)
+    {
+        (*list).head = newNode;
+        (*list).tail = newNode;
+        (*(*list).head).next = NULL;
+    }
+    else
+    {
+        (*newNode).next = (*list).head;
+        (*list).head = newNode;
+    }
+}
+
+int isEmpty(LinkedList* list)
+{
+    int empty;
+
+    if((*list).head == NULL)
+    {
+        empty = 0;
+    }
+    else
+    {
+        empty = 1;
+    }
+    return empty;
 }
 
 void* removeStart(LinkedList* list)
@@ -33,7 +58,6 @@ void* removeStart(LinkedList* list)
     (*list).head = (*(*list).head).next;
 
     value = (*toRemove).data;
-    free((*toRemove).data);
     free(toRemove);
     return value;
 }
@@ -56,17 +80,21 @@ void* removeLast(LinkedList* list)
     void* value;
 
     curr = (*list).head;
-    while ((*curr).next != NULL)
+    if(list->head->next != NULL)
     {
-        prev = curr;
-        curr = (*curr).next;
+        while ((*curr).next != NULL)
+        {
+            prev = curr;
+            curr = (*curr).next;
+        }
+
+        (*list).tail = prev;
+        (*(*list).tail).next = NULL;
     }
 
-    (*(*list).tail).next = NULL;
-    (*list).tail = prev;
-    value = (*curr).next;
-    free((*curr).data);
-    free(curr);
+    value = curr->data;
+
+    freeNode(curr);
     return value;
 }
 
@@ -84,17 +112,21 @@ void printLinkedList(LinkedList* list)
 {
     LListNode* curr;
 
-    curr = (*list).head;
+    curr = list->head;
 
-    if((*curr).data != NULL)
+    if(list->head->next == NULL)
     {
-        printf("%p\n", (*curr).data);
+        printf("%s\n", (char*)curr->data);
     }
-    while((*curr).next != NULL)
+    else
     {
-        curr = (*curr).next;
-        printf("%p\n", (*curr).data);
+        while(curr != NULL)
+        {
+            printf("%s\n", (char*)(curr->data));
+            curr = curr->next;
+        }
     }
+
 }
 
 void freeLinkedList(LinkedList* list)

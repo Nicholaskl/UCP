@@ -13,6 +13,7 @@ typedef struct{
 
 LinkedList* createLinkedList();
 void insertStart(LinkedList* list, void* entry);
+int isEmpty(LinkedList* list);
 void* removeStart(LinkedList* list);
 void insertLast(LinkedList* list, void* entry);
 void* removeLast(LinkedList* list);

@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
    {
       printf("FAILED\n");
    }
-   else if(strncmp((char*)list->head->data, input2, strlen(input2)+1)==0 && 
+   else if(strncmp((char*)list->head->data, input2, strlen(input2)+1)==0 &&
             strncmp((char*)list->tail->data, input1, strlen(input1)+1)==0)
    {
       printf("PASSED\n");
@@ -68,8 +68,6 @@ int main(int argc, char const *argv[])
    {
       printf("FAILED\n");
    }
-
-   /*INSERTING LAST*/
 
    /*REMOVING FIRST*/
    printf("Remove First: ");
@@ -84,13 +82,78 @@ int main(int argc, char const *argv[])
       printf("FAILED\n");
    }
 
-
    /*REMOVING LAST*/
+   printf("Remove Last: ");
+   insertStart(list,input2);
+
+   data = (char*)removeLast(list);
+
+   if(strncmp(data, input1, strlen(input1)+1) == 0)
+   {
+      printf("PASSED\n");
+   }
+   else
+   {
+      printf("FAILED\n");
+   }
+
+   printf("Remove Last (2): ");
+
+   data = (char*)removeLast(list);
+
+   if(strncmp(data, input2, strlen(input2)+1) == 0)
+   {
+      printf("PASSED\n");
+   }
+   else if(list->head == NULL)
+   {
+      printf("FAILED\n");
+   }
+   else
+   {
+      printf("FAILED\n");
+   }
+
+   /*INSERTING LAST*/
+   printf("Inserting Last: ");
+   insertLast(list,input1);
+   if(list->head == NULL)
+   {
+      printf("FAILED\n");
+   }
+   else if(strncmp((char*)list->head->data, input1, strlen(input1)+1)==0)
+   {
+      printf("PASSED\n");
+   }
+   else
+   {
+      printf("FAILED\n");
+   }
+
+   printf("Inserting Last (2): ");
+   insertLast(list,input2);
+   if(list->head == NULL)
+   {
+      printf("FAILED\n");
+   }
+   else if(strncmp((char*)list->head->data, input1, strlen(input1)+1)==0 &&
+            strncmp((char*)list->tail->data, input2, strlen(input2)+1)==0)
+   {
+      printf("PASSED\n");
+   }
+   else
+   {
+      printf("FAILED\n");
+   }
 
    /*PRINTING*/
+   printLinkedList(list);
 
    /*FREEING*/
-   
+   free(input1);
+   free(input2);
+   freeLinkedList(list);
+
    /* ANY OTHER TESTS YOU WANT TO DO*/
 
    return 0;
