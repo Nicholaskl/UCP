@@ -8,7 +8,7 @@ void menu(int argc, char* argv[])
     FILE* inFile = fopen("input", "r");
     Entry* ent;
     int size;
-    char line[100];
+    int index;
 
     /* open both files */
     /* if error opening, print error */
@@ -23,9 +23,11 @@ void menu(int argc, char* argv[])
     /* if opened correctly copy file */
     else
     {
+        index = atoi(argv[1]);
         size = fgetc(inFile);
         ent = (Entry*)malloc(sizeof(Entry)*size);
-
+        readJournal(inFile, size, ent);
+        printf("%d-%d-%d: %s\n", ent[index].year, ent[index].month, ent[index].day, ent[index].msg);
     }
 
     /* if error during copy or writing print error */
@@ -41,9 +43,17 @@ void menu(int argc, char* argv[])
     }
 }
 
-void readJournal(FILE* inFile)
+void readJournal(FILE* inFile, int size, Entry* ent)
 {
-    fgets(line, 100, inFile);
+    int ii;
+
+    for(ii=0; ii < size; ii++)
+    {
+        fscanf(inFile, "%d/%d/%d\n", &ent[ii].day, &ent[ii].month, &ent[ii].year);
+        fgets(ent[ii].msg, 100, inFile);
+    }
+
+
 }
 
 void copyByOneChar(FILE* inFile, FILE* outFile)
