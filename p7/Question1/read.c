@@ -25,9 +25,12 @@ void menu(int argc, char* argv[])
     {
         index = atoi(argv[1]);
         size = fgetc(inFile);
+
         ent = (Entry*)malloc(sizeof(Entry)*size);
         readJournal(inFile, size, ent);
         printf("%d-%d-%d: %s\n", ent[index].year, ent[index].month, ent[index].day, ent[index].msg);
+
+
     }
 
     /* if error during copy or writing print error */
@@ -52,7 +55,6 @@ void readJournal(FILE* inFile, int size, Entry* ent)
         fscanf(inFile, "%d/%d/%d\n", &ent[ii].day, &ent[ii].month, &ent[ii].year);
         fgets(ent[ii].msg, 100, inFile);
     }
-
 
 }
 
