@@ -14,11 +14,14 @@
 #include <string.h>
 
 #include "LinkedList.h"
+#include "LinkedListTest.h"
 
 int main(int argc, char const *argv[])
 {
    LinkedList* list = NULL;
    char* data;
+   Entry print1 = {2010, 04, 12, "Interview went well I think, though was told to wear shoes."};
+   Entry print2 = {2010, 04, 18, "Doc advised me to concentrate on something... I forget."};
    char* input1 = (char*)malloc(sizeof(char)*6);
    char* input2 = (char*)malloc(sizeof(char)*4);
 
@@ -147,14 +150,36 @@ int main(int argc, char const *argv[])
    }
 
    /*PRINTING*/
-   printLinkedList(list);
+   removeStart(list);
+   removeStart(list);
+   insertStart(list, &print1);
+   insertLast(list, &print2);
+
+   printLinkedList(list, &printEntry);
 
    /*FREEING*/
+
    free(input1);
    free(input2);
-   freeLinkedList(list);
+   freeLinkedList(list, &freeEntry);
 
    /* ANY OTHER TESTS YOU WANT TO DO*/
 
    return 0;
+}
+
+void printEntry(LListNode* node)
+{
+    Entry* data;
+
+    data = node->data;
+    printf("%d-%d-%d: %s\n", (int)(data->year), (int)(data->month), (int)(data->day), (char*)(data->msg));
+}
+
+void freeEntry(LListNode* node)
+{
+    Entry* data;
+
+    data = node->data;
+    free(data->msg);
 }

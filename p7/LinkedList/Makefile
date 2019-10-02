@@ -11,7 +11,7 @@ endif
 $(EXEC) : $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-LinkedListTest.o : LinkedListTest.c LinkedList.h
+LinkedListTest.o : LinkedListTest.c LinkedListTest.h LinkedList.h
 	$(CC) $(CFLAGS) LinkedListTest.c -c
 
 LinkedList.o : LinkedList.c LinkedList.h

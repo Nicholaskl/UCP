@@ -94,7 +94,7 @@ void* removeLast(LinkedList* list)
 
     value = curr->data;
 
-    freeNode(curr);
+    free(curr);
     return value;
 }
 
@@ -108,7 +108,7 @@ int listLength(LListNode* node)
     return length;
 }
 
-void printLinkedList(LinkedList* list)
+void printLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 {
     LListNode* curr;
 
@@ -116,32 +116,39 @@ void printLinkedList(LinkedList* list)
 
     if(list->head->next == NULL)
     {
-        printf("%s\n", (char*)curr->data);
+        if(curr->data != NULL)
+        {
+            (*funcPointer)(curr);
+        }
     }
     else
     {
-        while(curr != NULL)
+        if(curr->data != NULL)
         {
-            printf("%s\n", (char*)(curr->data));
-            curr = curr->next;
+            while(curr != NULL)
+            {
+                (*funcPointer)(curr);
+                curr = curr->next;
+            }
         }
     }
 
 }
 
-void freeLinkedList(LinkedList* list)
+void freeLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 {
-    freeNode((*list).head);
+
+    freeNode((*list).head, funcPointer);
     free(list);
 }
 
-void freeNode(LListNode *node)
+void freeNode(LListNode *node, void (*funcPointer)(LListNode*))
 {
     if(node != NULL)
     {
-        freeNode((*node).next);
+        freeNode((*node).next, funcPointer);
 
-        free((*node).data);
+        (*funcPointer)(node);
         free(node);
     }
 }
