@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     readSettings(argc, argv, &width, &height, &numMatch);
     initialiseTable(array, width, height);
     mainMenu();
-    freeTable(array);
+    freeTable(array, width, height);
 
     return 0;
 }

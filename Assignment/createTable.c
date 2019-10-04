@@ -75,7 +75,18 @@ void initialiseTable(int** array, int width, int height)
     }
 }
 
-void freeTable()
+void freeTable(int** array, int width, int height)
 {
-    /* FOR FREEING THE TABLE MALLOCS */
+    int i;
+    int j;
+
+    for(i = 0; i < height; i++)
+    {
+        for(j = 0; j < width; j++)
+        {
+            free(array[i][j]);
+        }
+    }
+
+    free(array);
 }
