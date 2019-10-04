@@ -158,7 +158,6 @@ int main(int argc, char const *argv[])
    printLinkedList(list, &printEntry);
 
    /*FREEING*/
-
    free(input1);
    free(input2);
    freeLinkedList(list, &freeEntry);
@@ -178,8 +177,4 @@ void printEntry(LListNode* node)
 
 void freeEntry(LListNode* node)
 {
-    Entry* data;
-
-    data = node->data;
-    free(data->msg);
 }

@@ -137,7 +137,6 @@ void printLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 
 void freeLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 {
-
     freeNode((*list).head, funcPointer);
     free(list);
 }
