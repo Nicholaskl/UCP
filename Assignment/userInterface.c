@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include "userInterface.h"
 #include "gameFunc.h"
+#include "LinkedList.h"
 
 void mainMenu(int** board, int width, int height)
 {
     int option;
     int exit;
+    LinkedList turns = NULL;
 
     exit = 0;
     do

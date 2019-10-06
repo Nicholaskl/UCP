@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "gameFunc.h"
 
+
 void newGame(int** board, int width, int height)
 {
     int i;
