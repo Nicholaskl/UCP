@@ -5,6 +5,7 @@ void newGame(int** board, int width, int height)
 {
     int i;
     int j;
+    int gameEnd;
 
     for(i = 0; i < height; i++)
     {
@@ -13,7 +14,17 @@ void newGame(int** board, int width, int height)
             board[i][j] = -1;
         }
     }
+
     displayBoard(board, width, height);
+    do
+    {
+        for(i = 0; i < 2; i++)
+        {
+            newTurn(board, width, height);
+        }
+        gameEnd = 1;
+    }
+    while (gameEnd != 1);
 }
 
 void displayBoard(int** board, int width, int height)
@@ -39,11 +50,11 @@ void displayBoard(int** board, int width, int height)
             {
                 printf("   ");
             }
-            else if(curr == 0)
+            else if(curr == 1)
             {
                 printf(" O ");
             }
-            else if(curr == 1)
+            else if(curr == 0)
             {
                 printf(" X ");
             }
@@ -67,4 +78,55 @@ void printTopBottom(int width)
         printf("*");
     }
     printf("+\n");
+}
+
+void newTurn(int** board, int width, int height)
+{
+    int doneTurn;
+    static int numTurn;
+    char player;
+    char line[9];
+    int readAtt;
+    int insertX;
+    int insertY;
+
+    doneTurn = 0;
+    if (numTurn%2 == 0)
+    {
+        player = 'X';
+    }
+    else
+    {
+        player = 'O';
+    }
+
+    do
+    {
+        printf("Player %c make a turn\n", player);
+        fgets(line, 9, stdin);
+        readAtt = sscanf(line, "(%d,%d)", &insertX, &insertY);
+
+        if((insertY < width) && (insertY >= 0) && (insertX < height)
+            && (readAtt = 2) && (insertX >= 0))
+        {
+            if (board[insertY][insertX] == -1)
+            {
+                board[insertY][insertX] = player%2;
+                doneTurn = 1;
+            }
+            else
+            {
+                printf("ERROR! Already filled here\n");
+                insertX = 0;
+                insertY = 0;
+            }
+        }
+        else
+        {
+            printf("ERROR! Co-ordinates out of board\n");
+        }
+    }
+    while(doneTurn != 1);
+    displayBoard(board, width, height);
+    numTurn++;
 }
