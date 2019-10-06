@@ -45,11 +45,11 @@ void readFile(FILE* settFile, int* width, int* height, int* numMatch)
 
         if(setting == 'M')
         {
-            *width = value;
+            *height = value;
         }
         else if(setting == 'N')
         {
-            *height = value;
+            *width = value;
         }
         else if(setting == 'K')
         {
@@ -64,29 +64,14 @@ void readFile(FILE* settFile, int* width, int* height, int* numMatch)
     while(i < 4);
 }
 
-void initialiseTable(int** array, int width, int height)
+void freeTable(int** board, int width, int height)
 {
     int i;
 
-    array = (int**)malloc(height * sizeof(int*));
     for(i = 0; i < height; i++)
     {
-        array[i] = (int*)malloc(width * sizeof(int*));
-    }
-}
-
-void freeTable(int** array, int width, int height)
-{
-    int i;
-    int j;
-
-    for(i = 0; i < height; i++)
-    {
-        for(j = 0; j < width; j++)
-        {
-            free(array[i][j]);
-        }
+        free(board[i]);
     }
 
-    free(array);
+    free(board);
 }

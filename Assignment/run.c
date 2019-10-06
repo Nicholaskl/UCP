@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "createTable.h"
 #include "userInterface.h"
 
@@ -7,13 +8,19 @@ int main(int argc, char* argv[])
     int width;
     int height;
     int numMatch;
-    int** array;
-    array = 0;
+    int** board;
+    int i;
+    board = 0;
 
     readSettings(argc, argv, &width, &height, &numMatch);
-    initialiseTable(array, width, height);
-    mainMenu();
-    freeTable(array, width, height);
+    board = (int**)malloc(height * sizeof(int*));
+    for(i = 0; i < height; i++)
+    {
+        board[i] = (int*)malloc(width * sizeof(int));
+    }
+
+    mainMenu(board, width, height);
+    freeTable(board, width, height);
 
     return 0;
 }

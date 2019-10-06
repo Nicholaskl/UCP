@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "userInterface.h"
+#include "gameFunc.h"
 
-void mainMenu()
+void mainMenu(int** board, int width, int height)
 {
     int option;
     int exit;
@@ -23,6 +24,7 @@ void mainMenu()
         switch (option)
         {
             case 1:
+                newGame(board, width, height);
                 break;
             case 2:
                 break;
