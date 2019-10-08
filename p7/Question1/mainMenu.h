@@ -1,5 +1,5 @@
-#ifndef READ_H
-#define READ_H
+#ifndef MAINMENU_H
+#define MAINMENU_H
 
 typedef struct {
     int year;
@@ -10,6 +10,5 @@ typedef struct {
 
 void menu(int argc, char* argv[]);
 void readJournal(FILE* inFile, int size, Entry* ent);
-void copyByOneChar(FILE* inFile, FILE* outFile);
 
 #endif

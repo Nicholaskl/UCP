@@ -1,7 +1,7 @@
 CC = gcc
 EXEC = question1
 CFLAGS = -Wall -Werror -pedantic -ansi -g
-OBJ = question1.o read.o
+OBJ = question1.o mainMenu.o
 
 ifdef ALL_STATS
 CFLAGS += -D ALL_STATS
@@ -11,12 +11,11 @@ endif
 $(EXEC) : $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-question1.o : question1.c read.h
+question1.o : question1.c mainMenu.h
 	$(CC) $(CFLAGS) question1.c -c
 
-read.o : read.c read.h
-	$(CC) -c read.c $(CFLAGS)
-
+mainMenu.o : mainMenu.c mainMenu.h
+	$(CC) -c mainMenu.c $(CFLAGS)
 
 clean:
 	rm -f $(EXEC) $(OBJ)

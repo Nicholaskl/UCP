@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "read.h"
+#include "mainMenu.h"
 
 void menu(int argc, char* argv[])
 {
@@ -23,12 +23,17 @@ void menu(int argc, char* argv[])
     /* if opened correctly copy file */
     else
     {
+        /* index for printing array */
         index = atoi(argv[1]);
+        /* gets first line of file which has size of struct array */
         size = fgetc(inFile);
 
+        /* creates an entry array with size specified */
         ent = (Entry*)malloc(sizeof(Entry)*size);
+        /* reads file into array */
         readJournal(inFile, size, ent);
-        printf("%d-%d-%d: %s\n", ent[index].year, ent[index].month, ent[index].day, ent[index].msg);
+        /* prints specified struct */
+        printf("%d-%d-%d: %s", ent[index].year, ent[index].month, ent[index].day, ent[index].msg);
 
 
     }
@@ -50,26 +55,13 @@ void readJournal(FILE* inFile, int size, Entry* ent)
 {
     int ii;
 
+    /* puts details in array of structs */
     for(ii=0; ii < size; ii++)
     {
+        /* put all details except message in struct */
         fscanf(inFile, "%d/%d/%d\n", &ent[ii].day, &ent[ii].month, &ent[ii].year);
+        /* put message in struct */
         fgets(ent[ii].msg, 100, inFile);
     }
 
-}
-
-void copyByOneChar(FILE* inFile, FILE* outFile)
-{
-    int ch;
-
-    /* reads next character from file one and writes it into second */
-    do
-    {
-        ch = fgetc(inFile);
-        if(ch != EOF)
-        {
-            fputc((char)ch, outFile);
-        }
-    }
-    while(ch != EOF);
 }
