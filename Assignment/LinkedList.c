@@ -10,6 +10,7 @@ LinkedList* createLinkedList()
     list = (LinkedList*)malloc(sizeof(LinkedList));
     (*list).head = NULL;
     (*list).tail = NULL;
+    list->count = 0;
 
     return list;
 }
@@ -32,6 +33,7 @@ void insertStart(LinkedList* list, void* entry)
         (*newNode).next = (*list).head;
         (*list).head = newNode;
     }
+    list->count += 1;
 }
 
 int isEmpty(LinkedList* list)
@@ -59,6 +61,7 @@ void* removeStart(LinkedList* list)
 
     value = (*toRemove).data;
     free(toRemove);
+    list->count -= 1;
     return value;
 }
 
@@ -68,9 +71,19 @@ void insertLast(LinkedList* list, void* entry)
     newNode = (LListNode*)malloc(sizeof(LListNode));
 
     (*newNode).data = entry;
-    (*newNode).next = NULL;
-    (*(*list).tail).next = newNode;
-    (*list).tail = newNode;
+
+    if(isEmpty(list) == 0)
+    {
+        (*list).head = newNode;
+        (*list).tail = newNode;
+        (*(*list).tail).next = NULL;
+    }
+    else
+    {
+        (*newNode).next = (*list).tail;
+        (*list).tail = newNode;
+    }
+    list->count += 1;
 }
 
 void* removeLast(LinkedList* list)
@@ -95,6 +108,7 @@ void* removeLast(LinkedList* list)
     value = curr->data;
 
     free(curr);
+    list->count -= 1;
     return value;
 }
 

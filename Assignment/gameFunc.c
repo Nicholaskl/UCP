@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include "LinkedList.h"
 #include "gameFunc.h"
+#include "logFunc.h"
 
-
-void newGame(int** board, int width, int height)
+void newGame(int** board, int width, int height, LinkedList** gameLog)
 {
     int i;
     int j;
@@ -21,7 +22,7 @@ void newGame(int** board, int width, int height)
     {
         for(i = 0; i < 2; i++)
         {
-            newTurn(board, width, height);
+            newTurn(board, gameLog, width, height);
         }
         gameEnd = 1;
     }
@@ -81,7 +82,7 @@ void printTopBottom(int width)
     printf("+\n");
 }
 
-void newTurn(int** board, int width, int height)
+void newTurn(int** board, LinkedList** gameLog, int width, int height)
 {
     int doneTurn;
     static int numTurn;
@@ -129,5 +130,6 @@ void newTurn(int** board, int width, int height)
     }
     while(doneTurn != 1);
     displayBoard(board, width, height);
+    insertTurn(gameLog, numTurn, player, insertX, insertY);
     numTurn++;
 }

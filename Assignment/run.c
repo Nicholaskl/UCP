@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
         board[i] = (int*)malloc(width * sizeof(int));
     }
 
-    mainMenu(board, width, height);
+    mainMenu(board, width, height, numMatch);
     freeTable(board, width, height);
 
     return 0;
