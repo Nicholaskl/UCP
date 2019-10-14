@@ -9,15 +9,9 @@ void mainMenu(int** board, int width, int height, int numMatch)
 {
     int option;
     int exit;
-    int gameNum;
-    gameEntry currEnt;
-    LinkedList* logs = NULL;
     LinkedList* gameLog = NULL;
-    LinkedList* currGame = NULL;
-    LListNode* curr;
-    LListNode* currTurn;
 
-    logs = createLinkedList();
+    gameLog = createLinkedList();
 
     exit = 0;
     do
@@ -36,38 +30,25 @@ void mainMenu(int** board, int width, int height, int numMatch)
         switch (option)
         {
             case 1:
-                gameLog = createLinkedList();
                 newGame(board, width, height, &gameLog);
-                insertLast(logs, &gameLog);
                 break;
             case 2:
-                printf("SETTINGS:");
-                printf("M: %d\n", height);
-                printf("N: %d\n", width);
-                printf("K: %d\n", numMatch);
-                curr = logs->head;
-                gameNum = 1;
-                while(curr->next != NULL)
-                {
-                    printf("Game: %d\n", gameNum);
-                    currGame = curr->data;
-                    currTurn = currGame->head;
-                    while(currTurn->next != NULL)
-                    {
-                        currEnt = (gameEntry*)currTurn->data;
-                        printf("\tTurn: %d\n", currEnt->turnNum);
-                    }
-                    gameNum += 1;
-                }
+                printf("SETTINGS:\n");
+                printf("  M: %d\n", height);
+                printf("  N: %d\n", width);
+                printf("  K: %d\n", numMatch);
                 break;
             case 3:
                 printf("SETTINGS:\n");
-                printf("\tM: %d\n", height);
+                printf("  M: %d\n", height);
+                printf("  N: %d\n", width);
+                printf("  K: %d\n", numMatch);
+                printLinkedList(gameLog, &printList);
                 break;
             case 4:
                 break;
             case 5:
-                freeLists(&logs);
+                freeLists(&gameLog);
                 exit = 1;
                 break;
             default:

@@ -5,9 +5,11 @@
 
 void newGame(int** board, int width, int height, LinkedList** gameLog)
 {
+    static int gameNum = 1;
     int i;
     int j;
     int gameEnd;
+    int turnCount = 1;
 
     for(i = 0; i < height; i++)
     {
@@ -22,11 +24,13 @@ void newGame(int** board, int width, int height, LinkedList** gameLog)
     {
         for(i = 0; i < 2; i++)
         {
-            newTurn(board, gameLog, width, height);
+            newTurn(board, gameLog, width, height, turnCount, gameNum);
+            turnCount++;
         }
         gameEnd = 1;
     }
     while (gameEnd != 1);
+    gameNum++;
 }
 
 void displayBoard(int** board, int width, int height)
@@ -82,18 +86,16 @@ void printTopBottom(int width)
     printf("+\n");
 }
 
-void newTurn(int** board, LinkedList** gameLog, int width, int height)
+void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnCount, int gameNum)
 {
     int doneTurn;
-    static int numTurn;
     char player;
-    char line[9];
     int readAtt;
-    int insertX;
-    int insertY;
+    int insertX = -1;
+    int insertY = -1;
 
     doneTurn = 0;
-    if (numTurn%2 == 0)
+    if (turnCount%2 == 0)
     {
         player = 'X';
     }
@@ -102,13 +104,12 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height)
         player = 'O';
     }
 
-    do
+    while(doneTurn != 1)
     {
         printf("Player %c make a turn\n", player);
-        fgets(line, 9, stdin);
-        readAtt = sscanf(line, "(%d,%d)", &insertX, &insertY);
+        scanf(" (%d,%d)", &insertX, &insertY);
 
-        if((insertY < width) && (insertY >= 0) && (insertX < height)
+        if((insertY <= width) && (insertY >= 0) && (insertX <= height)
             && (readAtt = 2) && (insertX >= 0))
         {
             if (board[insertY][insertX] == -1)
@@ -118,7 +119,7 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height)
             }
             else
             {
-                printf("ERROR! Already filled here\n");
+                printf("ERROR! Already filled here \n");
                 insertX = 0;
                 insertY = 0;
             }
@@ -128,8 +129,6 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height)
             printf("ERROR! Co-ordinates out of board\n");
         }
     }
-    while(doneTurn != 1);
     displayBoard(board, width, height);
-    insertTurn(gameLog, numTurn, player, insertX, insertY);
-    numTurn++;
+    insertTurn(gameLog, turnCount, player, insertX, insertY, gameNum);
 }

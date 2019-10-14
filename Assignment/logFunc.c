@@ -3,33 +3,40 @@
 #include "LinkedList.h"
 #include "logFunc.h"
 
-void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY)
+void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY, int gameNum)
 {
-    gameEntry gameEnt;
+    gameEntry* gameEnt;
 
-    gameEnt.turnNum = numTurn;
-    gameEnt.player = player;
-    gameEnt.xCoord = insertX;
-    gameEnt.yCoord = insertY;
+    gameEnt = (gameEntry*)malloc(sizeof(gameEntry));
 
-    *game = createLinkedList();
-    insertLast(*game, &gameEnt);
+    gameEnt->gameNum = gameNum;
+    gameEnt->turnNum = numTurn;
+    gameEnt->player = player;
+    gameEnt->xCoord = insertX;
+    gameEnt->yCoord = insertY;
+
+    insertLast(*game, gameEnt);
 }
 
-void freeLists(LinkedList** logs)
+void freeLists(LinkedList** gameList)
 {
-    freeLinkedList(*logs, &freeGameList);
+    freeLinkedList(*gameList, &freeGameList);
 }
 
 void freeGameList(LListNode* node)
 {
-    printf("1\n");
-    freeLinkedList(node->data, &freeEntry);
-    free(node);
+    free(node->data);
 }
 
-void freeEntry(LListNode* node)
+void printList(LListNode* node)
 {
-    printf("2\n");
-    free(node);
+    gameEntry* curr = node->data;
+
+    if(curr->turnNum == 1)
+    {
+        printf("\nGame %d:\n", curr->gameNum);
+    }
+    printf("  Turn: %d\n", curr->turnNum);
+    printf("  Player: %c\n", curr->player);
+    printf("  Location: %d,%d\n\n", curr->xCoord, curr->yCoord);
 }
