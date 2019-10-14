@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "logFunc.h"
@@ -22,11 +23,13 @@ void freeLists(LinkedList** logs)
 
 void freeGameList(LListNode* node)
 {
+    printf("1\n");
     freeLinkedList(node->data, &freeEntry);
     free(node);
 }
 
 void freeEntry(LListNode* node)
 {
-    free(node->data);
+    printf("2\n");
+    free(node);
 }

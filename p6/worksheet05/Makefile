@@ -1,7 +1,7 @@
 CC = gcc
-EXEC = display
+EXEC = generate
 CFLAGS = -Wall -Werror -pedantic -ansi -g
-OBJ = display.o plot.o
+OBJ = generate.o randomarray.o
 
 ifdef ALL_STATS
 CFLAGS += -D ALL_STATS
@@ -11,11 +11,11 @@ endif
 $(EXEC) : $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-display.o : display.c plot.h
-	$(CC) $(CFLAGS) display.c -c
+generate.o : generate.c randomarray.h
+	$(CC) $(CFLAGS) generate.c -c
 
-plot.o : plot.c plot.h
-	$(CC) -c plot.c $(CFLAGS)
+randomarray.o : randomarray.c randomarray.h
+	$(CC) -c randomarray.c $(CFLAGS)
 
 clean:
 	rm -f $(EXEC) $(OBJ)

@@ -162,6 +162,5 @@ void freeNode(LListNode *node, void (*funcPointer)(LListNode*))
         freeNode((*node).next, funcPointer);
 
         (*funcPointer)(node);
-        free(node);
     }
 }

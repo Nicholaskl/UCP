@@ -9,8 +9,13 @@ void mainMenu(int** board, int width, int height, int numMatch)
 {
     int option;
     int exit;
+    int gameNum;
+    gameEntry currEnt;
     LinkedList* logs = NULL;
     LinkedList* gameLog = NULL;
+    LinkedList* currGame = NULL;
+    LListNode* curr;
+    LListNode* currTurn;
 
     logs = createLinkedList();
 
@@ -40,6 +45,20 @@ void mainMenu(int** board, int width, int height, int numMatch)
                 printf("M: %d\n", height);
                 printf("N: %d\n", width);
                 printf("K: %d\n", numMatch);
+                curr = logs->head;
+                gameNum = 1;
+                while(curr->next != NULL)
+                {
+                    printf("Game: %d\n", gameNum);
+                    currGame = curr->data;
+                    currTurn = currGame->head;
+                    while(currTurn->next != NULL)
+                    {
+                        currEnt = (gameEntry*)currTurn->data;
+                        printf("\tTurn: %d\n", currEnt->turnNum);
+                    }
+                    gameNum += 1;
+                }
                 break;
             case 3:
                 printf("SETTINGS:\n");
