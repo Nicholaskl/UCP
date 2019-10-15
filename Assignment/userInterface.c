@@ -30,7 +30,7 @@ void mainMenu(int** board, int width, int height, int numMatch)
         switch (option)
         {
             case 1:
-                newGame(board, width, height, &gameLog);
+                newGame(board, width, height, numMatch, &gameLog);
                 break;
             case 2:
                 printf("SETTINGS:\n");

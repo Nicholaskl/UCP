@@ -3,7 +3,7 @@
 #include "gameFunc.h"
 #include "logFunc.h"
 
-void newGame(int** board, int width, int height, LinkedList** gameLog)
+void newGame(int** board, int width, int height, int numMatch, LinkedList** gameLog)
 {
     static int gameNum = 1;
     int i;
@@ -22,14 +22,21 @@ void newGame(int** board, int width, int height, LinkedList** gameLog)
     displayBoard(board, width, height);
     do
     {
-        for(i = 0; i < 2; i++)
-        {
-            newTurn(board, gameLog, width, height, turnCount, gameNum);
-            turnCount++;
-        }
-        gameEnd = 1;
+        newTurn(board, gameLog, width, height, turnCount, gameNum);
+        winCondition(board, width, height, numMatch, &gameEnd);
+        turnCount++;
     }
     while (gameEnd != 1);
+    printf("!!!!!!!!!!!!!!!!!!!!\n");
+    if ((turnCount-1)%2 == 0)
+    {
+        printf("Player X wins!\n");
+    }
+    else
+    {
+        printf("Player O wins!\n");
+    }
+    printf("!!!!!!!!!!!!!!!!!!!!\n");
     gameNum++;
 }
 
@@ -109,7 +116,7 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
         printf("Player %c make a turn\n", player);
         scanf(" (%d,%d)", &insertX, &insertY);
 
-        if((insertY <= width) && (insertY >= 0) && (insertX <= height)
+        if((insertY < height) && (insertY >= 0) && (insertX < width)
             && (readAtt = 2) && (insertX >= 0))
         {
             if (board[insertY][insertX] == -1)
@@ -131,4 +138,72 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
     }
     displayBoard(board, width, height);
     insertTurn(gameLog, turnCount, player, insertX, insertY, gameNum);
+}
+
+void winCondition(int** board, int width, int height, int numMatch, int* gameEnd)
+{
+    int i;
+    int j;
+    int numX;
+    int numO;
+
+    for(i = 0; i < height; i++)
+    {
+        numX = 0;
+        numO = 0;
+        for(j=0; j < width; j++)
+        {
+            if(board[i][j] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[i][j] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
+    }
+
+    for(i = 0; i < width; i++)
+    {
+        numX = 0;
+        numO = 0;
+        for(j=0; j < height; j++)
+        {
+            if(board[j][i] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[j][i] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
+    }
+
+    for(j=height; j >= 0; j--)
+    {
+        board[0][j]
+    }
+
 }
