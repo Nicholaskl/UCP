@@ -201,9 +201,52 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
         }
     }
 
-    for(j=height; j >= 0; j--)
+    for(i=0; i < height; i++)
     {
-        board[0][j]
+        for(j = 0; ((i+j)<height) && (j<width) && (j<numMatch); j++)
+        {
+            if(board[i+j][0+j] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[i+j][0+j] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
+
+        for(j = 0; ((i-j)>=0) && (j<width) && (j<numMatch); j++)
+        {
+            if(board[i-j][0+j] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[i-j][0+j] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
     }
+
 
 }
