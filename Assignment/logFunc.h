@@ -13,5 +13,6 @@ void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int in
 void freeLists(LinkedList** gameList);
 void freeGameList(LListNode* node);
 void printList(LListNode* node);
+void saveLog(LinkedList* list, int width, int height, int numMatch);
 
 #endif

@@ -1,6 +1,6 @@
 CC = gcc
 EXEC = TicTacToe
-CFLAGS = -Wall -Werror -pedantic -ansi -g
+CFLAGS = -Wall -ansi -pedantic -Werror -std=c89 -g
 OBJ = run.o createTable.o userInterface.o gameFunc.o logFunc.o LinkedList.o
 
 ifdef ALL_STATS

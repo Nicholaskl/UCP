@@ -46,8 +46,10 @@ void mainMenu(int** board, int width, int height, int numMatch)
                 printLinkedList(gameLog, &printList);
                 break;
             case 4:
+                saveLog(gameLog, width, height, numMatch);
                 break;
             case 5:
+
                 freeLists(&gameLog);
                 exit = 1;
                 break;

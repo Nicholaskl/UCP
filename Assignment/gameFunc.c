@@ -203,6 +203,8 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
 
     for(i=0; i < height; i++)
     {
+        numX = 0;
+        numO = 0;
         for(j = 0; ((i+j)<height) && (j<width) && (j<numMatch); j++)
         {
             if(board[i+j][0+j] == 0)
@@ -225,6 +227,8 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
             }
         }
 
+        numX = 0;
+        numO = 0;
         for(j = 0; ((i-j)>=0) && (j<width) && (j<numMatch); j++)
         {
             if(board[i-j][0+j] == 0)
@@ -232,6 +236,57 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
                 numX += 1;
             }
             else if(board[i-j][0+j] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
+    }
+
+    for(i=0; i < height; i++)
+    {
+        numX = 0;
+        numO = 0;
+        for(j = 0; ((i+j)<height) && (j<width) && (j<numMatch); j++)
+        {
+            if(board[i+j][width-j-1] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[i+j][width-j-1] == 1)
+            {
+                numO += 1;
+            }
+            else
+            {
+                numO = 0;
+                numX = 0;
+            }
+
+            if((numO == numMatch) || (numX == numMatch))
+            {
+                *gameEnd = 1;
+            }
+        }
+
+        numX = 0;
+        numO = 0;
+        for(j = 0; ((i-j)>=0) && (j<width) && (j<numMatch); j++)
+        {
+            if(board[i-j][width-j-1] == 0)
+            {
+                numX += 1;
+            }
+            else if(board[i-j][width-j-1] == 1)
             {
                 numO += 1;
             }
