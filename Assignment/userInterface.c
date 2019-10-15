@@ -34,15 +34,15 @@ void mainMenu(int** board, int width, int height, int numMatch)
                 break;
             case 2:
                 printf("SETTINGS:\n");
-                printf("  M: %d\n", height);
-                printf("  N: %d\n", width);
-                printf("  K: %d\n", numMatch);
+                printf("   M: %d\n", height);
+                printf("   N: %d\n", width);
+                printf("   K: %d\n", numMatch);
                 break;
             case 3:
                 printf("SETTINGS:\n");
-                printf("  M: %d\n", height);
-                printf("  N: %d\n", width);
-                printf("  K: %d\n", numMatch);
+                printf("   M: %d\n", height);
+                printf("   N: %d\n", width);
+                printf("   K: %d\n", numMatch);
                 printLinkedList(gameLog, &printList);
                 break;
             case 4:

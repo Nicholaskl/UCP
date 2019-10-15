@@ -123,6 +123,20 @@ int listLength(LListNode* node)
     return length;
 }
 
+void writeLinkedList(LinkedList* list, FILE* file, void (*funcPointer)(LListNode*, FILE*))
+{
+    LListNode* curr;
+
+    curr = list->head;
+
+    while(curr != NULL)
+    {
+        (*funcPointer)(curr, file);
+        curr = curr->next;
+    }
+
+}
+
 void printLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 {
     LListNode* curr;

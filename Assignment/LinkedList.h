@@ -20,6 +20,7 @@ void insertLast(LinkedList* list, void* entry);
 void* removeLast(LinkedList* list);
 int listLength(LListNode* node);
 void printLinkedList(LinkedList* list, void (*funcPointer)(LListNode*));
+void writeLinkedList(LinkedList* list, FILE* file, void (*funcPointer)(LListNode*, FILE*));
 void freeLinkedList(LinkedList* list, void (*funcPointer)(LListNode*));
 void freeNode(LListNode *node, void (*funcPointer)(LListNode*));
 

@@ -37,9 +37,22 @@ void printList(LListNode* node)
     {
         printf("\nGame %d:\n", curr->gameNum);
     }
-    printf("  Turn: %d\n", curr->turnNum);
-    printf("  Player: %c\n", curr->player);
-    printf("  Location: %d,%d\n\n", curr->xCoord, curr->yCoord);
+    printf("   Turn: %d\n", curr->turnNum);
+    printf("   Player: %c\n", curr->player);
+    printf("   Location: %d,%d\n\n", curr->xCoord, curr->yCoord);
+}
+
+void writeList(LListNode* node, FILE* file)
+{
+    gameEntry* curr = node->data;
+
+    if(curr->turnNum == 1)
+    {
+        fprintf(file, "\nGame %d:\n", curr->gameNum);
+    }
+    fprintf(file, "   Turn: %d\n", curr->turnNum);
+    fprintf(file, "   Player: %c\n", curr->player);
+    fprintf(file, "   Location: %d,%d\n\n", curr->xCoord, curr->yCoord);
 }
 
 void saveLog(LinkedList* list, int width, int height, int numMatch)
@@ -48,12 +61,15 @@ void saveLog(LinkedList* list, int width, int height, int numMatch)
     time_t now;
     int hour, min, day, month;
     char fileName[30];
-    struct tm *local = localtime(&now);
+    struct tm *info;
+    time(&now);
+    info = localtime(&now);
 
-    hour = local->tm_hour;
-    min = local->tm_min;
-    day = local->tm_mday;
-    month = local->tm_mon +1;
+
+    hour = info->tm_hour;
+    min = info->tm_min;
+    day = info->tm_mday;
+    month = info->tm_mon +1;
 
     sprintf(fileName, "MNK_%d-%d-%d_%d-%d_%d-%d.log", height, width, numMatch,
             hour, min, day, month);
@@ -67,6 +83,10 @@ void saveLog(LinkedList* list, int width, int height, int numMatch)
     {
         fprintf(file, "SETTINGS\n");
         fprintf(file, "   M: %d\n", height);
+        fprintf(file, "   N: %d\n", width);
+        fprintf(file, "   K: %d\n", numMatch);
+
+        writeLinkedList(list, file, &writeList);
 
         if(ferror(file))
         {
