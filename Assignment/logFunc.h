@@ -2,15 +2,16 @@
 #define LOGFUNC_H
 
 typedef struct {
+    int gameNum;
     int turnNum;
     char player;
     int xCoord;
     int yCoord;
 } gameEntry;
 
-void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY);
-void freeLists(LinkedList** logs);
+void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY, int gameNum);
+void freeLists(LinkedList** gameList);
 void freeGameList(LListNode* node);
-void freeEntry(LListNode* node);
+void printList(LListNode* node);
 
 #endif

@@ -80,7 +80,8 @@ void insertLast(LinkedList* list, void* entry)
     }
     else
     {
-        (*newNode).next = (*list).tail;
+        newNode->next = NULL;
+        list->tail->next = newNode;
         (*list).tail = newNode;
     }
     list->count += 1;
@@ -128,23 +129,10 @@ void printLinkedList(LinkedList* list, void (*funcPointer)(LListNode*))
 
     curr = list->head;
 
-    if(list->head->next == NULL)
+    while(curr != NULL)
     {
-        if(curr->data != NULL)
-        {
-            (*funcPointer)(curr);
-        }
-    }
-    else
-    {
-        if(curr->data != NULL)
-        {
-            while(curr != NULL)
-            {
-                (*funcPointer)(curr);
-                curr = curr->next;
-            }
-        }
+        (*funcPointer)(curr);
+        curr = curr->next;
     }
 
 }
@@ -159,7 +147,7 @@ void freeNode(LListNode *node, void (*funcPointer)(LListNode*))
 {
     if(node != NULL)
     {
-        freeNode((*node).next, funcPointer);
+        freeNode(node->next, funcPointer);
 
         (*funcPointer)(node);
         free(node);
