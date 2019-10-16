@@ -3,9 +3,14 @@ EXEC = TicTacToe
 CFLAGS = -Wall -ansi -pedantic -Werror -std=c89 -g
 OBJ = run.o createTable.o userInterface.o gameFunc.o logFunc.o LinkedList.o
 
-ifdef ALL_STATS
-CFLAGS += -D ALL_STATS
-ALL_STATS : clean $(EXEC)
+ifdef SECRET
+CFLAGS += -D SECRET
+SECRET : clean $(EXEC)
+endif
+
+ifdef EDITOR
+CFLAGS += -D EDITOR
+EDITOR : clean $(EXEC)
 endif
 
 $(EXEC) : $(OBJ)

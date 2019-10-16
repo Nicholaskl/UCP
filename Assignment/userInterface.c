@@ -18,11 +18,16 @@ void mainMenu(int** board, int width, int height, int numMatch)
     {
         printf("----------------------------------------\n");
         printf("Select menu option:\n");
+        printf("0: Exit game\n");
         printf("1: Start a new game\n");
         printf("2: View settings of game\n");
         printf("3: View current logs\n");
+        #ifndef SECRET
         printf("4: Save logs to file\n");
-        printf("5: Exit game\n");
+        #endif
+        #ifndef EDITOR
+        printf("5: Change settings\n");
+        #endif
         printf("----------------------------------------\n");
 
         scanf("%d", &option);
@@ -46,10 +51,27 @@ void mainMenu(int** board, int width, int height, int numMatch)
                 printLinkedList(gameLog, &printList);
                 break;
             case 4:
+                #ifndef SECRET
                 saveLog(gameLog, width, height, numMatch);
+                #else
+                printf("Incorrect number entered\n");
+                #endif
                 break;
             case 5:
-
+                #ifndef SECRET
+                printf("Enter value for M");
+                
+                freeTable(board, width, height);
+                board = (int**)malloc(height * sizeof(int*));
+                for(i = 0; i < height; i++)
+                {
+                    board[i] = (int*)malloc(width * sizeof(int));
+                }
+                #else
+                printf("Incorrect number entered\n");
+                #endif
+                break;
+            case 0:
                 freeLists(&gameLog);
                 exit = 1;
                 break;

@@ -9,6 +9,7 @@ typedef struct LListNode{
 typedef struct{
     LListNode* head;
     LListNode* tail;
+    int count;
 } LinkedList;
 
 LinkedList* createLinkedList();
