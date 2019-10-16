@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "LinkedList.h"
-#include "logFunc.h"
+#include "LogFunc.h"
 
 void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY, int gameNum)
 {

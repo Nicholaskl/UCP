@@ -1,5 +1,21 @@
+/*
+ * File: LinkedList.h
+ * File Created: Tuesday, 1st October 2019
+ * Author: Nicholas Klvana-Hooper
+ * -----
+ * Last Modified: Wednesday, 16th October 2019
+ * Modified By: Nicholas Klvana-Hooper
+ * -----
+ * Purpose: Includes method definitions for LinkedList.c
+ */
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
+
+/* Normal Text colour definition */
+#define CLR "\033[0m"
+/* Red text definitions - for error printing */
+#define ERRCLR "\033[1;31m"
 
 typedef struct LListNode{
     void* data;

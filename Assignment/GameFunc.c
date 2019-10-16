@@ -1,7 +1,17 @@
+/*
+ * File: GameFunc.c
+ * File Created: Friday, 4th October 2019
+ * Author: Nicholas Klvana-Hooper
+ * -----
+ * Last Modified: Wednesday, 16th October 2019
+ * Modified By: Nicholas Klvana-Hooper
+ * -----
+ * Purpose: Runs program for Tic Tac Toe Game
+ */
 #include <stdio.h>
 #include "LinkedList.h"
-#include "gameFunc.h"
-#include "logFunc.h"
+#include "GameFunc.h"
+#include "LogFunc.h"
 
 void newGame(int** board, int width, int height, int numMatch, LinkedList** gameLog)
 {

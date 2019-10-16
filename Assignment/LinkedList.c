@@ -1,8 +1,24 @@
+/*
+ * File: LinkedList.c
+ * File Created: Tuesday, 1st October 2019
+ * Author: Nicholas Klvana-Hooper
+ * -----
+ * Last Modified: Wednesday, 16th October 2019
+ * Modified By: Nicholas Klvana-Hooper
+ * -----
+ * Purpose: A data stucture that can contain data and can expand and shrink
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "LinkedList.h"
 
+/*
+ * SUBMODULE: createLinkedList
+ * IMPORT:
+ * EXPORT: list(LinkedList*)
+ * ASSERTION: Create a new linked list with default values
+ */
 LinkedList* createLinkedList()
 {
     LinkedList* list;
