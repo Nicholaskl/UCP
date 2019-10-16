@@ -50,7 +50,7 @@ void displayBoard(int** board, int width, int height)
 
     for(i = 0; i < height; i++)
     {
-        printf("*");
+        printf("  *");
         for(j = 0; j < width; j++)
         {
             curr = board[i][j];
@@ -85,7 +85,7 @@ void printTopBottom(int width)
 
     num = (width*3)+(width-1);
 
-    printf("+");
+    printf("  +");
     for (i = 0; i < num; i++)
     {
         printf("*");
@@ -113,7 +113,9 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
 
     while(doneTurn != 1)
     {
+        printf("--------------------\n");
         printf("Player %c make a turn\n", player);
+        printf("--------------------\n");
         scanf(" (%d,%d)", &insertX, &insertY);
 
         if((insertY < height) && (insertY >= 0) && (insertX < width)
