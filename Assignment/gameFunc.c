@@ -27,20 +27,20 @@ void newGame(int** board, int width, int height, int numMatch, LinkedList** game
         turnCount++;
     }
     while (gameEnd != 1);
-    printf("\033[1;33m");
-    printf("^*^*^*^*^*^*^*^*^*^*\n");
-    printf("\033[0m");
+
     if ((turnCount-1)%2 == 0)
     {
-        printf("Player X wins!\n");
+        printf(GRN "^*^*^*^*^*^*^*^*^*^*\n");
+        printf("   Player X wins!\n");
+        printf("^*^*^*^*^*^*^*^*^*^*\n" CLR);
     }
     else
     {
-        printf("Player O wins!\n");
+        printf(YLLW "^*^*^*^*^*^*^*^*^*^*\n");
+        printf("   Player O wins!\n");
+        printf("^*^*^*^*^*^*^*^*^*^*\n" CLR);
     }
-    printf("\033[1;33m");
-    printf("^*^*^*^*^*^*^*^*^*^*\n");
-    printf("\033[0m");
+
 
     gameNum++;
 }
@@ -70,15 +70,11 @@ void displayBoard(int** board, int width, int height)
             }
             else if(curr == 1)
             {
-               printf("\033[1;33m");
-               printf(" O ");
-               printf("\033[0m");
+                printf(YLLW " O " CLR);
             }
             else if(curr == 0)
             {
-                printf("\033[1;32m");
-                printf(" X ");
-                printf("\033[0m");
+                printf(GRN " X " CLR);
             }
         }
         printf("*\n");
@@ -126,6 +122,11 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
         printf("Player %c make a turn\n", player);
         printf("Please use format (x,y)\n");
         printf("--------------------\n");
+        while(fgetc(stdin) == '\n')
+        {
+            fgetc(stdin);
+        }
+
         scanf(" (%d,%d)", &insertX, &insertY);
 
         if((insertY < height) && (insertY >= 0) && (insertX < width)
@@ -138,14 +139,16 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
             }
             else
             {
-                printf("ERROR! Already filled here \n");
-                insertX = 0;
-                insertY = 0;
+                printf(ERRCLR "ERROR! Already filled here \n" CLR);
             }
+        }
+        else if ((insertX == -1) || (insertY == -1))
+        {
+            printf(ERRCLR "ERROR! Wrong format input \n" CLR);
         }
         else
         {
-            printf("ERROR! Co-ordinates out of board\n");
+            printf(ERRCLR "ERROR! Co-ordinates out of board\n" CLR);
         }
     }
     displayBoard(board, width, height);

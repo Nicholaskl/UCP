@@ -4,12 +4,16 @@
 #include "LinkedList.h"
 #include "gameFunc.h"
 #include "logFunc.h"
+#include "createTable.h"
 
 void mainMenu(int** board, int width, int height, int numMatch)
 {
     int option;
     int exit;
     LinkedList* gameLog = NULL;
+    #ifdef EDITOR
+    int i;
+    #endif
 
     gameLog = createLinkedList();
 
@@ -22,10 +26,10 @@ void mainMenu(int** board, int width, int height, int numMatch)
         printf("1: Start a new game\n");
         printf("2: View settings of game\n");
         printf("3: View current logs\n");
-        #ifndef SECRET
+        #ifdef SECRET
         printf("4: Save logs to file\n");
         #endif
-        #ifndef EDITOR
+        #ifdef EDITOR
         printf("5: Change settings\n");
         #endif
         printf("----------------------------------------\n");
@@ -51,17 +55,23 @@ void mainMenu(int** board, int width, int height, int numMatch)
                 printLinkedList(gameLog, &printList);
                 break;
             case 4:
-                #ifndef SECRET
+                #ifdef SECRET
                 saveLog(gameLog, width, height, numMatch);
                 #else
                 printf("Incorrect number entered\n");
                 #endif
                 break;
             case 5:
-                #ifndef SECRET
-                printf("Enter value for M");
-                
+                #ifdef EDITOR
                 freeTable(board, width, height);
+
+                printf("Enter value for M\n");
+                scanf("%d", &height);
+                printf("Enter value for N\n");
+                scanf("%d", &width);
+                printf("Enter value for K\n");
+                scanf("%d", &numMatch);
+
                 board = (int**)malloc(height * sizeof(int*));
                 for(i = 0; i < height; i++)
                 {

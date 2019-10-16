@@ -22,7 +22,7 @@ run.o : run.c createTable.h userInterface.h
 createTable.o : createTable.c createTable.h
 	$(CC) -c createTable.c $(CFLAGS)
 
-userInterface.o : userInterface.c userInterface.h gameFunc.h LinkedList.h logFunc.h
+userInterface.o : userInterface.c userInterface.h gameFunc.h LinkedList.h logFunc.h createTable.h
 	$(CC) -c userInterface.c $(CFLAGS)
 
 gameFunc.o : gameFunc.c LinkedList.h logFunc.h  gameFunc.h
