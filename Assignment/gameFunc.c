@@ -8,7 +8,7 @@ void newGame(int** board, int width, int height, int numMatch, LinkedList** game
     static int gameNum = 1;
     int i;
     int j;
-    int gameEnd;
+    int gameEnd = 0;
     int turnCount = 1;
 
     for(i = 0; i < height; i++)
@@ -27,7 +27,9 @@ void newGame(int** board, int width, int height, int numMatch, LinkedList** game
         turnCount++;
     }
     while (gameEnd != 1);
-    printf("!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\033[1;33m");
+    printf("^*^*^*^*^*^*^*^*^*^*\n");
+    printf("\033[0m");
     if ((turnCount-1)%2 == 0)
     {
         printf("Player X wins!\n");
@@ -36,7 +38,10 @@ void newGame(int** board, int width, int height, int numMatch, LinkedList** game
     {
         printf("Player O wins!\n");
     }
-    printf("!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\033[1;33m");
+    printf("^*^*^*^*^*^*^*^*^*^*\n");
+    printf("\033[0m");
+
     gameNum++;
 }
 
@@ -45,7 +50,7 @@ void displayBoard(int** board, int width, int height)
     int i;
     int j;
     int curr;
-
+    printf("\033[2J");
     printTopBottom(width);
 
     for(i = 0; i < height; i++)
@@ -65,11 +70,15 @@ void displayBoard(int** board, int width, int height)
             }
             else if(curr == 1)
             {
-                printf(" O ");
+               printf("\033[1;33m");
+               printf(" O ");
+               printf("\033[0m");
             }
             else if(curr == 0)
             {
+                printf("\033[1;32m");
                 printf(" X ");
+                printf("\033[0m");
             }
         }
         printf("*\n");
@@ -115,6 +124,7 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
     {
         printf("--------------------\n");
         printf("Player %c make a turn\n", player);
+        printf("Please use format (x,y)\n");
         printf("--------------------\n");
         scanf(" (%d,%d)", &insertX, &insertY);
 
