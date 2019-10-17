@@ -1,3 +1,14 @@
+/*
+ * File: GameFunc.h
+ * File Created: Sunday, 6th October 2019
+ * Author: Nicholas Klvana-Hooper
+ * -----
+ * Last Modified: Thursday, 17th October 2019
+ * Modified By: Nicholas Klvana-Hooper
+ * -----
+ * Purpose: Includes method definitions for GameFunc.c
+ */
+
 #ifndef GAMEFUNC_H
 #define GAMEFUNC_H
 

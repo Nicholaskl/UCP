@@ -1,9 +1,25 @@
+/*
+ * File: LogFunc.c
+ * File Created: Sunday, 13th October 2019
+ * Author: Nicholas Klvana-Hooper
+ * -----
+ * Last Modified: Thursday, 17th October 2019
+ * Modified By: Nicholas Klvana-Hooper
+ * -----
+ * Purpose: Includes methods to deal with the Linked List and logging game/turns data
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "LinkedList.h"
 #include "LogFunc.h"
 
+/*
+ * SUBMODULE: newGame
+ * IMPORT: board(int**), width(int), height(int), numMatch(int), gameLog(LinkedList*)
+ * EXPORT: void
+ * ASSERTION: Starts a new game of Tic Tac Toe, finishing when a player wins
+ */
 void insertTurn(LinkedList** game, int numTurn, char player, int insertX, int insertY, int gameNum)
 {
     gameEntry* gameEnt;
