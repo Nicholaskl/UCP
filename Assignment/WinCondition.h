@@ -3,7 +3,7 @@
  * File Created: Thursday, 17th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Thursday, 17th October 2019
+ * Last Modified: Saturday, 19th October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: Includes method definitions for WinCondition.c

@@ -3,14 +3,19 @@
  * File Created: Sunday, 13th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Thursday, 17th October 2019
+ * Last Modified: Saturday, 19th October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
- * Purpose: Includes method definitions for LogFunc.h
+ * Purpose: Includes method definitions for LogFunc.c
  */
 
 #ifndef LOGFUNC_H
 #define LOGFUNC_H
+
+/* Normal Text colour definition */
+#define CLR "\033[0m"
+/* Red text definitions - for error printing */
+#define ERRCLR "\033[1;31m"
 
 /* Game Node Struct defintion
 *  Used for putting game/turn data for logging*/

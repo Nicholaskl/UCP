@@ -3,7 +3,7 @@
  * File Created: Friday, 4th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Wednesday, 16th October 2019
+ * Last Modified: Saturday, 19th October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: Contains functions that allows the game to be played (games, turns and winning)
@@ -22,11 +22,14 @@
  */
 void newGame(int** board, int width, int height, int numMatch, LinkedList** gameLog)
 {
-    static int gameNum = 1;
+    static int gameNum;
     int i;
     int j;
-    int gameEnd = 0;
-    int turnCount = 1;
+    int gameEnd;
+    int turnCount;
+    gameNum = 1;
+    gameEnd = 0;
+    turnCount = 1;
 
     /* Initalises the board array as full of -1 (non-valid user entries) */
     for(i = 0; i < height; i++)
@@ -148,8 +151,10 @@ void newTurn(int** board, LinkedList** gameLog, int width, int height, int turnC
     int clr;
     int doneTurn;
     char player;
-    int insertX = -1;
-    int insertY = -1;
+    int insertX;
+    int insertY;
+    insertX = -1;
+    insertY = -1;
 
     /* Players turn is based on whether the turn count is even or odd */
     if (turnCount%2 == 0)
