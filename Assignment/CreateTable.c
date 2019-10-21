@@ -3,11 +3,12 @@
  * File Created: Friday, 4th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Wednesday, 16th October 2019
+ * Last Modified: Monday, 21st October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: Reads settings file and deals with table freeing
  * Reference: readSettings based on Lecture 6 from UCP (Reading file)
+              Accessed on the 21st of October 2019
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,6 +64,7 @@ void readFile(FILE* settFile, int* width, int* height, int* numMatch)
     int i;
 
     /* There are 3 setting values to be read (M,N,K) */
+
     for(i = 0; i < 3; i++)
     {
         /* Gets a line and scans in values (ie. use format M=5) */
@@ -72,15 +74,39 @@ void readFile(FILE* settFile, int* width, int* height, int* numMatch)
         /* Sets setting variable to the corresponding input */
         if(setting == 'M')
         {
-            *height = value;
+            if(*height == -1)
+            {
+                *height = value;
+            }
+            else
+            {
+                *height = 1;
+                printf(ERRCLR "Duplicate value for M found\n" CLR);
+            }
         }
         else if(setting == 'N')
         {
-            *width = value;
+            if(*width == -1)
+            {
+                *width = value;
+            }
+            else
+            {
+                *width = 1;
+                printf(ERRCLR "Duplicate value for N found\n" CLR);
+            }
         }
         else if(setting == 'K')
         {
-            *numMatch = value;
+            if(*numMatch == -1)
+            {
+                *numMatch = value;
+            }
+            else
+            {
+                *numMatch = 0;
+                printf(ERRCLR "Duplicate value for K found\n" CLR);
+            }
         }
         /* If not one of the characters needed outputs error msg */
         else

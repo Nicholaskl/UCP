@@ -3,7 +3,7 @@
  * File Created: Thursday, 17th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Saturday, 19th October 2019
+ * Last Modified: Sunday, 20th October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: Checks board to see if a player has won
@@ -21,6 +21,7 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
 {
     int i;
     int j;
+    int k;
     int numX;
     int numO;
 
@@ -50,43 +51,26 @@ void winCondition(int** board, int width, int height, int numMatch, int* gameEnd
         }
     }
 
-    /* Goes through the rows */
-    for(i=0; i < height; i++)
+    for(k = 0; k < width; k++)
     {
-        numX = 0;
-        numO = 0;
-        /* Checks diagonally downwards from the first index of the row */
-        for(j = 0; ((i+j)<height) && (j<width) && (j<numMatch); j++)
+        /* Goes through the rows */
+        for(i=0; i < height; i++)
         {
-            checkWin(board, width, height, numMatch, i+j, j, &numO, &numX, gameEnd);
-        }
+            numX = 0;
+            numO = 0;
+            /* Checks diagonally downwards from the first index of the row */
+            for(j = 0; ((i+j)<height) && ((j+k)<width) && (j<numMatch); j++)
+            {
+                checkWin(board, width, height, numMatch, i+j, j+k, &numO, &numX, gameEnd);
+            }
 
-        numX = 0;
-        numO = 0;
-        /* Checks diagonally upwards from the first index of the row */
-        for(j = 0; ((i-j)>=0) && (j<width) && (j<numMatch); j++)
-        {
-            checkWin(board, width, height, numMatch, i-j, j, &numO, &numX, gameEnd);
-        }
-    }
-
-    /* Goes through the rows */
-    for(i=0; i < height; i++)
-    {
-        numX = 0;
-        numO = 0;
-        /* Checks diagonally downwards from the last index of the row */
-        for(j = 0; ((i+j)<height) && (j<width) && (j<numMatch); j++)
-        {
-            checkWin(board, width, height, numMatch, i+j, width-j-1, &numO, &numX, gameEnd);
-        }
-
-        numX = 0;
-        numO = 0;
-        /* Checks diagonally upwards from the last index of the row */
-        for(j = 0; ((i-j)>=0) && (j<width) && (j<numMatch); j++)
-        {
-            checkWin(board, width, height, numMatch, i-j, width-j-1, &numO, &numX, gameEnd);
+            numX = 0;
+            numO = 0;
+            /* Checks diagonally upwards from the first index of the row */
+            for(j = 0; ((i-j)>=0) && ((j+k)<width) && (j<numMatch); j++)
+            {
+                checkWin(board, width, height, numMatch, i-j, j+k, &numO, &numX, gameEnd);
+            }
         }
     }
 }

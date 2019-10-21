@@ -3,10 +3,12 @@
  * File Created: Sunday, 13th October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Saturday, 19th October 2019
+ * Last Modified: Monday, 21st October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: Includes methods to deal with the Linked List and logging game/turns data
+ * Reference: readSettings based on Lecture 6 from UCP (Reading file)
+              Accessed on the 21st of October 2019
  */
 #include <stdio.h>
 #include <stdlib.h>

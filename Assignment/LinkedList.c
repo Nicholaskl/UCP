@@ -3,12 +3,13 @@
  * File Created: Tuesday, 1st October 2019
  * Author: Nicholas Klvana-Hooper
  * -----
- * Last Modified: Thursday, 17th October 2019
+ * Last Modified: Monday, 21st October 2019
  * Modified By: Nicholas Klvana-Hooper
  * -----
  * Purpose: A data stucture that can contain data and can expand and shrink
  * Reference: Functions provided are based on Lecture 7 (UCP)
               Also is a modified version of prac7 LinkedList.c made by Nicholas Klvana-Hooper (me)
+              Accessed on the 21st October 2019
  */
 
 #include <stdio.h>
