@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for subDir in *; do
+    for file1 in $subDir/*; do
+        for file2 in $subDir/*; do
+            if [ $file1 != $file2 ]; then
+                if diff -q $file1 $file2 > /dev/null; then
+                    echo $file1 is same as $file2
+                fi
+            fi
+        done
+    done
+done

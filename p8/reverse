@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for i in $*; do
+    temp=" $text"
+    text="$i$temp"
+done
+
+for word in $text; do
+    echo $word
+done
